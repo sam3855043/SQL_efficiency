@@ -1,3 +1,4 @@
+-- search static info
 SELECT 
     schemaname, 
     relname, 
