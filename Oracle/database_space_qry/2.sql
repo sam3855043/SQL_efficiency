@@ -1,0 +1,1 @@
+select occupant_name,occupant_desc,round(space_usage_kbytes/1024/1024,2) GB from v$sysaux_occupants order by 3 desc;

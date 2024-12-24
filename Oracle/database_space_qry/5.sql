@@ -1,0 +1,29 @@
+
+    BEGIN
+    DBMS_AUDIT_MGMT.ALTER_PARTITION_INTERVAL(
+    interval_number       => 1,
+    interval_frequency    => 'DAY');
+    END;
+    /
+
+    BEGIN
+    DBMS_AUDIT_MGMT.SET_LAST_ARCHIVE_TIMESTAMP(
+    AUDIT_TRAIL_TYPE     =>  DBMS_AUDIT_MGMT.AUDIT_TRAIL_UNIFIED,
+    LAST_ARCHIVE_TIME    =>  SYSDATE-10 );
+    END;
+    /
+
+    BEGIN
+    DBMS_AUDIT_MGMT.CLEAN_AUDIT_TRAIL(
+    audit_trail_type => DBMS_AUDIT_MGMT.AUDIT_TRAIL_UNIFIED,
+    container => DBMS_AUDIT_MGMT.CONTAINER_CURRENT,
+    use_last_arch_timestamp => FALSE);
+    END;
+    /
+
+    BEGIN
+    DBMS_AUDIT_MGMT.CLEAN_AUDIT_TRAIL(
+    AUDIT_TRAIL_TYPE => DBMS_AUDIT_MGMT.AUDIT_TRAIL_AUD_STD,
+    USE_LAST_ARCH_TIMESTAMP => TRUE);
+    END;
+    /
